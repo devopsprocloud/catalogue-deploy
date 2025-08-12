@@ -38,7 +38,7 @@ pipeline {
                 """
             }
         }
-        starge('Terraform Apply') {
+        stage('Terraform Apply') {
             steps {
                 sh """
                     cd terraform 
