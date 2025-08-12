@@ -47,5 +47,17 @@ pipeline {
             }
         }    
     }
+    post {
+        always {
+            echo 'Deleting the Directory'
+            deleteDir()
+        }
+        failure {
+            echo 'Pipeline Script execution Failed'
+        }
+        success {
+            echo 'Pipeline Scrip Executed Successfully'
+        }
+    }
 
 }
