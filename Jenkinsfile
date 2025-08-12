@@ -48,6 +48,15 @@ pipeline {
                 """
             }
         }
+        stage('Terraform Plan') {
+            steps {
+                sh """
+                    cd terraform 
+                    terraform plan -var="app_version=${params.version}"
+                    # app_version will be set for the variable file "app_version" in terraform variables
+                """
+            }
+        }
     }
     post { 
         always { 
