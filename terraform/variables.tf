@@ -26,5 +26,5 @@ variable "zone_name" {
 }
 
 variable "app_version" {
-  
+  # get the value from Jenkinsfile (params.version)
 }

@@ -60,7 +60,9 @@ resource "null_resource" "catalogue" {
     # Bootstrap script called with private_ip of each node in the cluster
     inline = [
       "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh catalogue dev" # We are parsing the variables as $1 (mongodb) and $2 (dev) to bootstrap script
+      "sudo sh /tmp/bootstrap.sh catalogue dev ${var.app_version}" 
+      # The app version value we will get from jenkinsfile
+      # We are parsing the variables as $1 (mongodb) and $2 (dev) to bootstrap script
     ]
   }
 }
