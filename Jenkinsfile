@@ -43,16 +43,16 @@ pipeline {
             steps {
                 sh """
                     cd terraform 
-                    terraform plan -var="app_version=${params.version}"
+                    terraform plan -var-file=${params.environment}/${params.environment}.tfvars -var="app_version=${params.version}"
                     # app_version will be set for the variable file "app_version" in terraform variables
                 """
             }
         }
-        stage('Terraform Plan') {
+        stage('Terraform Apply') {
             steps {
                 sh """
                     cd terraform 
-                    terraform plan -var="app_version=${params.version}"
+                    terraform apply -var-file=${params.environment}/${params.environment}.tfvars -var="app_version=${params.version} -auto-approve"
                     # app_version will be set for the variable file "app_version" in terraform variables
                 """
             }
