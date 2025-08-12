@@ -12,6 +12,7 @@ pipeline {
     options {
         timeout(time: 1, unit: 'HOURS')
         disableConcurrentBuilds()
+        ansiColor('xterm')
     }
     // # We are getting the below parameter values from catalogue Jenkinsfile
     parameters {
