@@ -13,6 +13,7 @@ pipeline {
         timeout(time: 1, unit: 'HOURS')
         disableConcurrentBuilds()
     }
+    // # We are getting the below parameter values from catalogue Jenkinsfile
     parameters {
             string(name: 'version', defaultValue: '', description: 'What is the artifact version?')
             string(name: 'environment', defaultValue: '', description: 'What is the environment?')
@@ -22,14 +23,19 @@ pipeline {
         stage('Print the Artifact version') {
             steps {
                 script {
-                    // def packageJson = readJSON file: 'package.json'
-                    // packageVersion = packageJson.version
-                    // echo "application version: $packageVersion"
                     sh """
                         echo "version: ${params.version}"
                         echo "environment: ${params.environment}"
                     """
                 }
+            }
+        }
+        stage('Terraform Init') {
+            steps {
+                sh """
+                    cd terraform 
+                    terraform init --backend-config=${params.environment}/backend.tf -reconfigure
+                """
             }
         }
     }
