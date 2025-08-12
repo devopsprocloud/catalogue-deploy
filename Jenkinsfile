@@ -14,13 +14,14 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
-        stage('Get the package version and environment')
+        stage('Get the package version and environment') {
             steps {
                 sh """
                     echo "Artifact version: ${params.version}"
                     echo "Environment: ${params.environment}"
                 """
             }
+        }    
     }
 
 }
