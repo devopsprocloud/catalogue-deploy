@@ -48,10 +48,10 @@ pipeline {
         }    
     }
     post {
-        always {
-            echo 'Deleting the Directory'
-            deleteDir()
-        }
+        // always {
+        //     echo 'Deleting the Directory'
+        //     deleteDir()
+        // }
         failure {
             echo 'Pipeline Script execution Failed'
         }
