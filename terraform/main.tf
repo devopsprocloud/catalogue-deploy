@@ -1,4 +1,4 @@
-module "cart" {
+module "catalogue" {
   source = "git::https://github.com/devopsprocloud/terraform-roboshop-app.git?ref=main"
   component_sg_id = data.aws_ssm_parameter.catalogue_sg_id.value
   private_subnet_id = local.private_subnet_id
