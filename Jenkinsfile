@@ -36,14 +36,14 @@ pipeline {
                 """
             }
         }
-        stage('terraform Plan') {
-            steps {
-                sh """
-                    cd terraform 
-                    terraform plan -var-file="${params.environment}/${params.environment}.tfvars" -var="app_version=${params.version}" 
-                """
-            }
-        }
+        // stage('terraform Plan') {
+        //     steps {
+        //         sh """
+        //             cd terraform 
+        //             terraform plan -var-file="${params.environment}/${params.environment}.tfvars" -var="app_version=${params.version}" 
+        //         """
+        //     }
+        // }
         // stage('Terraform Apply') {
         //     steps {
         //         sh """
