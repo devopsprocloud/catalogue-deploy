@@ -8,7 +8,7 @@ pipeline {
         string(name: 'version', defaultValue: '', description: 'What is the Artifact Version?')
         string(name: 'environment', defaultValue: '', description: 'What is the environment?')
         string(name: 'create', defaultValue: 'false', description: 'Do you want to Create?')
-        string(name: 'deploy', defaultValue: 'false', description: 'Do you want to Destroy?')
+        string(name: 'destroy', defaultValue: 'false', description: 'Do you want to Destroy?')
         
     }
    
