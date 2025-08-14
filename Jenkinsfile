@@ -7,7 +7,7 @@ pipeline {
     parameters {
         string(name: 'version', defaultValue: '', description: 'What is the Artifact Version?')
         string(name: 'environment', defaultValue: '', description: 'What is the environment?')
-        booleanParam(name: 'create', defaultValue: 'false', description: 'Do you want to Create?')
+        booleanParam(name: 'create', defaultValue: 'true', description: 'Do you want to Create?')
         booleanParam(name: 'destroy', defaultValue: 'false', description: 'Do you want to Destroy?')
         
     }
@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Terraform Plan') {
             when {
-                expression { params.create }
+                expression { params.create == true }
             }
             steps {
                 sh """
@@ -47,7 +47,7 @@ pipeline {
         }
         stage('Terraform Apply') {
             when {
-                expression { params.create == true }
+                expression { params.create == true && params.destroy == false}
             }
             steps {
                 sh """
@@ -59,7 +59,7 @@ pipeline {
         }
         stage('Terraform Destroy') {
             when {
-                expression { params.destroy == true }
+                expression { params.destroy == true && params.create == false }
             }
             steps {
                 sh """
