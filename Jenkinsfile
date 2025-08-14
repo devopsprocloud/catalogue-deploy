@@ -47,7 +47,7 @@ pipeline {
         }
         stage('Terraform Apply') {
             when {
-                expression { params.create == 'true' }
+                expression { params.create == true }
             }
             steps {
                 sh """
@@ -59,7 +59,7 @@ pipeline {
         }
         stage('Terraform Destroy') {
             when {
-                expression { params.destroy == 'true' }
+                expression { params.destroy == true }
             }
             steps {
                 sh """
