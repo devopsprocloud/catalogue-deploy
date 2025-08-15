@@ -7,7 +7,8 @@ pipeline {
     parameters {
         string(name: 'version', defaultValue: '', description: 'What is the Artifact Version?')
         string(name: 'environment', defaultValue: '', description: 'What is the environment?')
-        booleanParam(name: 'Destroy', defaultValue: 'false', description: 'Toggle this to Destroy?')
+        booleanParam(name: 'Deploy', defaultValue: '', description: 'Toggle this to Destroy?')
+        booleanParam(name: 'Destroy', defaultValue: '', description: 'Toggle this to Destroy?')
         
     }
    
@@ -35,7 +36,7 @@ pipeline {
         }
         stage('Terraform Plan') {
             when {
-                expression { params.Deploy == 'true'}
+                expression { params.Deploy == true}
             }
             steps {
                 sh """
@@ -56,18 +57,18 @@ pipeline {
                 """
             }
         }
-        stage('Terraform Destroy') {
-            when {
-                expression { params.Destroy }
-            }
-            steps {
-                sh """
-                    cd terraform 
-                    terraform destroy -var-file="${params.environment}/${params.environment}.tfvars" -var="app_version=${params.version}" -auto-approve
+        // stage('Terraform Destroy') {
+        //     when {
+        //         expression { params.Destroy == true}
+        //     }
+        //     steps {
+        //         sh """
+        //             cd terraform 
+        //             terraform destroy -var-file="${params.environment}/${params.environment}.tfvars" -var="app_version=${params.version}" -auto-approve
                     
-                """
-            }
-        }   
+        //         """
+        //     }
+        // }   
     }
     post {
         // always {
