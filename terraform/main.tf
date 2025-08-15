@@ -10,6 +10,8 @@ module "catalogue" {
   private_subnet_ids = local.private_subnet_ids
   app_alb_listener_arn = data.aws_ssm_parameter.app_alb_listener_arn.value
   app_version = var.app_version
+  environment = var.environment
+  common_tags = var.common_tags
 }
 
 
