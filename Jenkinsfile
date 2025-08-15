@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Terraform Plan') {
             when {
-                expression { params.Deploy == true}
+                expression { params.Deploy == 'true'}
             }
             steps {
                 sh """
